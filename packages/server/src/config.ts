@@ -62,6 +62,7 @@ export async function getConfig (): Promise<Config> {
     loggerMinSeverity: env.loggerMinSeverity || 'info' as LogLevelString,
     jqPath: env.jqPath || 'jq',
     listenAddress: env.listenAddress || '0.0.0.0',
+    maxQueryComplexity: env.maxQueryComplexity || 200, // TODO: define default
     pollingInterval: {
       adaSupply: env.pollingInterval.adaSupply || 1000 * 60,
       metadataSync: {
@@ -88,6 +89,7 @@ function filterAndTypecastEnvs (env: any) {
     JQ_PATH,
     LISTEN_ADDRESS,
     LOGGER_MIN_SEVERITY,
+    MAX_QUERY_COMPLEXITY,
     METADATA_SERVER_URI,
     OGMIOS_HOST,
     OGMIOS_PORT,
@@ -122,6 +124,7 @@ function filterAndTypecastEnvs (env: any) {
     jqPath: JQ_PATH,
     listenAddress: LISTEN_ADDRESS,
     loggerMinSeverity: LOGGER_MIN_SEVERITY as LogLevelString,
+    maxQueryComplexity: Number(MAX_QUERY_COMPLEXITY),
     metadataServerUri: METADATA_SERVER_URI,
     ogmios: {
       host: OGMIOS_HOST,
